@@ -48,4 +48,5 @@ void puzzle_print(int user_puzzle[N][N]){
     }
 }
 
+
 #endif //CS170_THE_EIGHT_PUZZLE_UIFUNCTIONS_H

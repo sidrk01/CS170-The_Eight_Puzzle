@@ -37,6 +37,7 @@ int main() {
     puzzle_print(user_puzzle); //prints contents of puzzle
 
     return 0;
+
 }
 
 
