@@ -59,6 +59,9 @@ const int emergency_room[N][N] = {{1, 2, 3},
                                   {4, 5, 6},
                                   {8, 7, 0,}};
 
+int goal_state[N][N] = {{1, 2, 3},
+                              {4, 5, 6},
+                              {7, 8, 0,}};
 //Creates puzzle from default options
 void puzzle_from_defaults(){
     cout << default_choice; // default select prompt

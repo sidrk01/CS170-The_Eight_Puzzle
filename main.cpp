@@ -2,7 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <cstdlib>
-#include "uifunctions.h"
+#include "Problem.h"
 using namespace std;
 
 
@@ -24,10 +24,16 @@ int main() {
 
         cout << border; //neatly separates user inputs
         cout << algo; //allows for choice of algorithm
+        cin >> user_choice;
+
+        Problem(user_puzzle, goal_state); //creates problem to be solved
         cout << border;
-        cout << proceed;
+
+        cout << proceed; //reset puzzle
         cin >> user_opt;
         cout << border;
+
+
     }
 
     return 0;
