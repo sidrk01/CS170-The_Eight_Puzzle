@@ -15,11 +15,11 @@ int main() {
         cout << welcome; //Welcome prompt
         cin >> user_choice;
         cout << border;
+
         if (user_choice == 1)
             puzzle_from_defaults();
         else
             puzzle_from_user();
-
         puzzle_print(user_puzzle); //prints contents of puzzle
 
         cout << border; //neatly separates user inputs
@@ -32,8 +32,6 @@ int main() {
         cout << proceed; //reset puzzle
         cin >> user_opt;
         cout << border;
-
-
     }
 
     return 0;

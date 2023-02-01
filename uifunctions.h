@@ -142,20 +142,6 @@ void puzzle_from_user(){
     }
 }
 
-//detects instance of empty space
-bool detect_space(int puzzle[N][N], int&column, int&row){
-    for (unsigned i = 0; i < N; i++){
-        for (unsigned j = 0; j < N; j++){
-            if (puzzle[i][j] == 0){
-                row = i;
-                column=j;
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 //prints contents of user puzzle
 void puzzle_print(int puzzle[N][N]){
     for (unsigned i = 0; i < N; i++){
