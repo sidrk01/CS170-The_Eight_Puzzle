@@ -11,13 +11,15 @@ using namespace std;
 const int N = 3;
 int user_puzzle[N][N];
 
-const string welcome = "Welcome to Sid's  8 puzzle solver. Type '1' to use a default puzzle. or '2' to enter your own puzzle.\n";
+const string welcome = "Welcome to Sid's 8 puzzle solver. Type '1' to use a default puzzle. or '2' to enter your own puzzle.\n";
 const string puzzle_enter = "Enter your puzzle, use a zero to represent the blank\n";
 const string invalid = "An invalid response has been entered. Default is selected.\n";
 const string algo = "Enter your choice of algorithm\n[1] Uniform Cost Search.\n[2] A* with the Misplaced Tile heuristic.\n[3] A* with the Euclidean distance heuristic.\n";
-const string default_choice = "Select the desired level of spice for your puzzle.\n[1] No Spice\n[2] Lite Mild\n[3] Mild\n[4] Medium\n[5] HOT\n[6] Extra HOT\n[7] REAPER\n[8] EMERGENCY ROOM\n";
-
+const string proceed = "Would you like to try another puzzle?\nEnter 'Y' to continue or 'N' to quit.\n";
+const string default_choice = "Select the desired level of spice for your puzzle\n[1] No Spice\n[2] Lite Mild\n[3] Mild\n[4] Medium\n[5] HOT\n[6] Extra HOT\n[7] REAPER\n[8] EMERGENCY ROOM\n";
+const string border = "========================================================================================================================";
 //one move [1]
+
 const int no_spice[N][N] = {{1, 2, 3},
                             {4, 5, 6},
                             {7, 8, 0,}};
@@ -42,17 +44,17 @@ const int hot[N][N] = {{7, 2, 5},
                        {3, 1, 0},
                        {6, 4, 8,}};
 
-//31 moves
+//31 moves [6]
 const int extra_hot[N][N] = {{8, 6, 7},
                              {2, 5, 4},
                              {3, 0, 1,}};
 
-//868 moves
+//868 moves [7]
 const int reaper[N][N] = {{8, 7, 1},
                           {6, 0, 2},
                           {5, 4, 3,}};
 
-//don't attempt to solve
+//don't attempt to solve [8]
 const int emergency_room[N][N] = {{1, 2, 3},
                                   {4, 5, 6},
                                   {8, 7, 0,}};
@@ -64,7 +66,6 @@ void puzzle_from_defaults(){
     int user_select;
     string  spice_select = "Lite Mild";
     cin >> user_select;
-
 
 switch (user_select) {
     case 1:
@@ -104,14 +105,15 @@ switch (user_select) {
         copy(&lite_mild[0][0], &lite_mild[0][0] + N * N, &user_puzzle[0][0]);
         spice_select = "Lite Mild";
         break;
-
 }
-    cout << "You have chosen:" + spice_select + ". Good Luck!" << endl; //User is notified of choice;
+    cout << "You have chosen: " + spice_select + "." << endl; //User is notified of choice;
 }
 
 //Creates puzzle from user-inputs (option "2")
 void puzzle_from_user(){
     string row_one, row_two, row_three;
+   //12 cout << "Press Enter to begin:";
+    cin.ignore();
     cout << puzzle_enter;
     cout << "Enter the first row, use space or tabs between numbers:";
     getline(cin, row_one);
@@ -150,7 +152,6 @@ bool detect_space(int puzzle[N][N], int&column, int&row){
     }
     return false;
 }
-
 
 //prints contents of user puzzle
 void puzzle_print(int puzzle[N][N]){
