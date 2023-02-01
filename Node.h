@@ -6,12 +6,14 @@
 #define CS170_THE_EIGHT_PUZZLE_NODE_H
 
 #include "Problem.h"
-#include "uifunctions.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
 
 class Node {
 public:
-    int puzzle[N][N];
-    int goal[N][N];
+    int puzzle[n][n];
+    int goal[n][n];
 
     int g_cost; //cost from initial state to node: g()
     int h_cost; //cost of heuristic function: h()
@@ -20,8 +22,8 @@ public:
 
     //constructors
     Node();
-    Node (Node* prev);
-    Node(Problem p);
+    explicit Node (Node* prev);
+    explicit Node(Problem p);
 
     //operators
     void slide_up();
@@ -30,7 +32,7 @@ public:
     void slide_right();
 
     //helper functions
-    static string puzzle_string(int puzzle_node[N][N]); //converts puzzle to string
+    static string puzzle_string(int puzzle_node[n][n]); //converts puzzle to string
     bool detect_space(int& row, int& col); //finds the space in puzzle
     int total_cost(); //g(n) + h(n)
     bool goal_test();

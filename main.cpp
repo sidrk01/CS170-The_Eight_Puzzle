@@ -3,11 +3,11 @@
 #include <algorithm>
 #include <cstdlib>
 #include "Problem.h"
+#include "uifunctions.h"
 using namespace std;
 
 
 int main() {
-
     char user_opt = 'Y';
     int user_choice = 0;
 

@@ -16,7 +16,7 @@ Node::Node(Node *prev){ //initialize with previous Node
     this->g_cost = prev->g_cost;
     this->h_cost = prev->h_cost;
     this->depth = prev->depth;
-    copy(&prev->puzzle[0][0],&prev->puzzle[0][0] + N*N,&this->puzzle[0][0]); //copies over puzzle
+    copy(&prev->puzzle[0][0],&prev->puzzle[0][0] + n*n,&this->puzzle[0][0]); //copies over puzzle
 }
 
 Node::Node(Problem p){ //creates initial and goal state
@@ -24,14 +24,46 @@ Node::Node(Problem p){ //creates initial and goal state
     g_cost = 0;
     h_cost = 0;
     depth = 0;
-    copy(&p.initial_state[0][0],&p.initial_state[0][0] + N*N,&this->puzzle[0][0]);
-    copy(&p.goal_state[0][0],&p.goal_state[0][0] + N*N,&this->goal[0][0]);
+    copy(&p.initial_state[0][0],&p.initial_state[0][0] + n*n,&this->puzzle[0][0]);
+    copy(&p.goal_state[0][0],&p.goal_state[0][0] + n*n,&this->goal[0][0]);
 }
 
-string Node::puzzle_string(int puzzle_node[N][N]) {
+void Node::slide_up() {
+    int row = 0;
+    int col = 0;
+    detect_space(row, col);
+    swap(puzzle[row][col], puzzle[row - 1][col]); //shift space with number above
+    state = puzzle_string(puzzle);
+}
+
+void Node::slide_down() {
+    int row = 0;
+    int col = 0;
+    detect_space(row, col);
+    swap(puzzle[row][col], puzzle[row + 1][col]); //shift space with number below
+    state = puzzle_string(puzzle);
+}
+
+void Node::slide_left() {
+    int row = 0;
+    int col = 0;
+    detect_space(row, col);
+    swap(puzzle[row][col], puzzle[row][col - 1]); //shift space with left-side number
+    state = puzzle_string(puzzle);
+}
+
+void Node::slide_right() {
+    int row = 0;
+    int col = 0;
+    detect_space(row, col);
+    swap(puzzle[row][col], puzzle[row][col + 1]); //shift space with right-side number
+    state = puzzle_string(puzzle);
+}
+
+string Node::puzzle_string(int puzzle_node[n][n]) {
     string puzzle_out;
-    for (unsigned i = 0; i < N; i++){
-        for (unsigned j = 0; j < N; j++){
+    for (unsigned i = 0; i < n; i++){
+        for (unsigned j = 0; j < n; j++){
             puzzle_out.push_back(puzzle_node[i][j] + 48); //appends character-by-character to string
         }
     }
@@ -39,8 +71,8 @@ string Node::puzzle_string(int puzzle_node[N][N]) {
 }
 
 bool Node::goal_test() {
-    for (unsigned i = 0; i < N; i++){
-        for (unsigned j = 0; j < N; j++){
+    for (unsigned i = 0; i < n; i++){
+        for (unsigned j = 0; j < n; j++){
             if (puzzle[i][j] != goal[i][j])
                 return false; //tile doesn't match goal
         }
@@ -49,8 +81,8 @@ bool Node::goal_test() {
 }
 
 bool Node::detect_space(int& row, int& col){
-    for (unsigned i = 0; i < N; i++){
-        for (unsigned j = 0; j < N; j++){
+    for (unsigned i = 0; i < n; i++){
+        for (unsigned j = 0; j < n; j++){
             if (puzzle[i][j] == 0){
                 row = i;
                 col=j;
@@ -61,3 +93,6 @@ bool Node::detect_space(int& row, int& col){
     return false;
 }
 
+int Node::total_cost() {
+    return h_cost + g_cost;
+}
