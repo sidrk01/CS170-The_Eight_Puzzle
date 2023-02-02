@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "Problem.h"
 #include "uifunctions.h"
+#include "searchalgos.h"
 using namespace std;
 
 
@@ -26,7 +27,7 @@ int main() {
         cout << algo; //allows for choice of algorithm
         cin >> user_choice;
 
-        Problem(user_puzzle, goal_state); //creates problem to be solved
+        Problem problem(user_puzzle, goal_state); //creates problem to be solved
         cout << border;
 
         cout << proceed; //reset puzzle

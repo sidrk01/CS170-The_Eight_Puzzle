@@ -32,7 +32,7 @@ void Node::slide_up() {
     int row = 0;
     int col = 0;
     detect_space(row, col);
-    swap(puzzle[row][col], puzzle[row - 1][col]); //shift space with number above
+    swap(puzzle[row][col], puzzle[row - 1][col]); //shift space with number below
     state = puzzle_string(puzzle);
 }
 
@@ -40,7 +40,7 @@ void Node::slide_down() {
     int row = 0;
     int col = 0;
     detect_space(row, col);
-    swap(puzzle[row][col], puzzle[row + 1][col]); //shift space with number below
+    swap(puzzle[row][col], puzzle[row + 1][col]); //shift space with number above
     state = puzzle_string(puzzle);
 }
 
@@ -96,3 +96,42 @@ bool Node::detect_space(int& row, int& col){
 int Node::total_cost() {
     return h_cost + g_cost;
 }
+
+void Node::set_heuristic(int choice) {
+    switch(choice){
+        case 1: //Uniform Cost Search
+            h_cost = 0;
+            break;
+        case 2: //A* with misplaced tile
+            h_cost = misplaced_tile();
+            break;
+        case 3: //A* with euclidean distance
+            h_cost = euclidean_distance();
+            break;
+        default:
+            break;
+    }
+}
+
+int Node::misplaced_tile() {
+    return 0;
+}
+int Node::euclidean_distance() {
+    return 0;
+}
+
+void Node::print_result() {
+    for (auto & i : puzzle){
+        for (unsigned j = 0; j < n; j++){
+            if (i[j] != 0)
+                cout << i[j];
+            else
+                cout << '*';
+
+            if (j != 2)
+                cout << " ";
+        }
+        cout << endl;
+    }
+}
+

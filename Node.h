@@ -18,7 +18,7 @@ public:
     int g_cost; //cost from initial state to node: g()
     int h_cost; //cost of heuristic function: h()
     int depth;
-    static string state; //unique ID for state
+    string state; //unique ID for state
 
     //constructors
     Node();
@@ -33,9 +33,11 @@ public:
 
     //helper functions
     static string puzzle_string(int puzzle_node[n][n]); //converts puzzle to string
+    void print_result();
     bool detect_space(int& row, int& col); //finds the space in puzzle
     int total_cost(); //g(n) + h(n)
     bool goal_test();
+    void set_heuristic(int choice);
     int misplaced_tile(); //counts misplaced tiles
     int euclidean_distance(); //calcs euclidean distance
 };

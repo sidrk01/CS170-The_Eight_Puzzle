@@ -18,8 +18,8 @@ const string algo = "Enter your choice of algorithm\n[1] Uniform Cost Search.\n[
 const string proceed = "Would you like to try another puzzle?\nEnter 'Y' to continue or 'N' to quit.\n";
 const string default_choice = "Select the desired level of spice for your puzzle\n[1] No Spice\n[2] Lite Mild\n[3] Mild\n[4] Medium\n[5] HOT\n[6] Extra HOT\n[7] REAPER\n[8] EMERGENCY ROOM\n";
 const string border = "========================================================================================================================";
-//one move [1]
 
+//one move [1]
 const int no_spice[N][N] = {{1, 2, 3},
                             {4, 5, 6},
                             {7, 8, 0,}};
@@ -29,12 +29,12 @@ const int lite_mild[N][N] = {{1, 2, 0},
                              {4, 5, 3},
                              {7, 8, 6,}};
 
-//six moves [3]
+//6 moves [3]
 const int mild[N][N] = {{1, 2, 0},
                         {4, 5, 3},
                         {7, 8, 6,}};
 
-//9 moves [4]
+//16 moves [4]
 const int medium[N][N] = {{0, 1, 2},
                           {4, 5, 3},
                           {7, 8, 6,}};
