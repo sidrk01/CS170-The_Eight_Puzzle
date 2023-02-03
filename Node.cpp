@@ -17,10 +17,12 @@ Node::Node(Node *prev){ //initialize with previous Node
     this->h_cost = prev->h_cost;
     this->depth = prev->depth;
     copy(&prev->puzzle[0][0],&prev->puzzle[0][0] + n*n,&this->puzzle[0][0]); //copies over puzzle
+    copy(&prev->goal[0][0],&prev->goal[0][0] + n*n,&this->goal[0][0]); //copies over goal state
 }
 
 Node::Node(Problem p){ //creates initial and goal state
     state = puzzle_string(p.initial_state);
+    cout << endl << state << endl;
     g_cost = 0;
     h_cost = 0;
     depth = 0;
@@ -32,7 +34,7 @@ void Node::slide_up() {
     int row = 0;
     int col = 0;
     detect_space(row, col);
-    swap(puzzle[row][col], puzzle[row - 1][col]); //shift space with number below
+    swap(puzzle[row][col], puzzle[row - 1][col]); //shift space with number above
     state = puzzle_string(puzzle);
 }
 
@@ -40,7 +42,7 @@ void Node::slide_down() {
     int row = 0;
     int col = 0;
     detect_space(row, col);
-    swap(puzzle[row][col], puzzle[row + 1][col]); //shift space with number above
+    swap(puzzle[row][col], puzzle[row + 1][col]); //shift space with number below
     state = puzzle_string(puzzle);
 }
 
@@ -81,8 +83,8 @@ bool Node::goal_test() {
 }
 
 bool Node::detect_space(int& row, int& col){
-    for (unsigned i = 0; i < n; i++){
-        for (unsigned j = 0; j < n; j++){
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
             if (puzzle[i][j] == 0){
                 row = i;
                 col=j;
@@ -93,7 +95,7 @@ bool Node::detect_space(int& row, int& col){
     return false;
 }
 
-int Node::total_cost() {
+int Node::total_cost() const{
     return h_cost + g_cost;
 }
 

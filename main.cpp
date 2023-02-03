@@ -28,6 +28,8 @@ int main() {
         cin >> user_choice;
 
         Problem problem(user_puzzle, goal_state); //creates problem to be solved
+        SearchAlgos search(problem, user_choice);
+        search.graph_search();
         cout << border;
 
         cout << proceed; //reset puzzle

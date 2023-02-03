@@ -35,7 +35,7 @@ public:
     static string puzzle_string(int puzzle_node[n][n]); //converts puzzle to string
     void print_result();
     bool detect_space(int& row, int& col); //finds the space in puzzle
-    int total_cost(); //g(n) + h(n)
+    int total_cost() const; //g(n) + h(n)
     bool goal_test();
     void set_heuristic(int choice);
     int misplaced_tile(); //counts misplaced tiles
