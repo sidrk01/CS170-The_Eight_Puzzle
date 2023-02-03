@@ -5,7 +5,7 @@
 
 SearchAlgos::SearchAlgos(Problem problem, int num) {
     p = &problem;
-    this->algo_choice = n;
+    algo_choice = num;
 }
 
 void SearchAlgos::graph_search() {
@@ -23,18 +23,12 @@ void SearchAlgos::graph_search() {
             return;
         }
 
-        //CHANGE
         if (frontier_size < frontier.size())
             frontier_size = frontier.size();
 
         Node temp = frontier.top();
 
         frontier.pop(); //choose a leaf node and remove it from the frontier
-
-        if(first){ //CAN BE MODIFIED*****
-            explored_set.insert(temp.state); //First leaf node in explored set
-            first = false;
-        }
 
         if(temp.goal_test()){ //if a node contains a goal state then return the corresponding solution
             temp.print_result(); //prints output of search
@@ -45,22 +39,14 @@ void SearchAlgos::graph_search() {
         return;
         }
 
+        explored_set.insert(head.state); //add to first node to explored set
+
         if (frontier_size > 1) {//expand the chosen node
             cout << "The best state to expand with g(n) = " << temp.g_cost  << " and h(n) = " << temp.h_cost << " is..." << endl;
         }
 
         temp.print_result();
         cout <<"expanding this node..." << endl << endl;
-
-        // DEBUG: OUTPUTS
-        /*
-        cout << endl << "Start List:" << endl;
-        for (unsigned i = 0; i < list.size(); i++){
-            list.at(i).print_result();
-            cout << list.at(i).g_cost << endl;
-        }
-        cout << "End List:" << endl;
-       */
 
         list = expand(temp); //expand the chosen node
         for (auto & i : list){ //adding resulting nodes to the frontier

@@ -94,7 +94,7 @@ bool Node::detect_space(int& row, int& col){
     return false;
 }
 
-int Node::total_cost() const{
+double Node::total_cost(){
     return h_cost + g_cost;
 }
 
@@ -115,10 +115,58 @@ void Node::set_heuristic(int choice) {
 }
 
 int Node::misplaced_tile() {
-    return 0;
+    int misplaced_tiles = 0;
+    string goal_string = puzzle_string(goal);
+    for (unsigned i = 0; i < goal_string.size(); i++){
+        if ((state.at(i) != 0) && (state.at(i) != goal_string.at(i)))
+            misplaced_tiles += 1;
+    }
+    return misplaced_tiles;
 }
-int Node::euclidean_distance() {
-    return 0;
+
+double Node::euclidean_distance() {
+    double euclid_dist = 0.0;
+    double dist = 0.0;
+    int curr_val = 0;
+    int goal_val = 0;
+
+    //used to identify distance
+    int x_1, y_1;
+    int x_2, y_2;
+    string goal_string = puzzle_string(goal);
+
+    vector<pair<int, int>> curr_v (9, std::make_pair(0,0));
+    vector<pair<int, int>> goal_v (9, std::make_pair(0,0));
+
+    //identify values for each index in puzzle
+    for (int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            curr_val = puzzle[i][j];
+            goal_val = goal[i][j];
+
+            //Take indices of each value except for empty space
+            if (curr_val != 0) {
+                curr_v.at(curr_val).first = i;
+                curr_v.at(curr_val).second = j;
+            }
+            if (goal_val != 0) {
+                goal_v.at(goal_val).first = i;
+                goal_v.at(goal_val).second = j;
+            }
+        }
+    }
+
+    for (unsigned i = 0; i < 8; i++){
+        x_1 = curr_v.at(i).first;
+        y_1 = curr_v.at(i).second;
+        x_2 = goal_v.at(i).first;
+        y_2 = goal_v.at(i).second;
+
+        dist = sqrt(pow(x_1 - x_2, 2) + pow(y_1 - y_2, 2)); //distance formula
+        euclid_dist += dist; //sum of distances
+    }
+
+    return euclid_dist;
 }
 
 void Node::print_result() {

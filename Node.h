@@ -16,7 +16,7 @@ public:
     int goal[n][n];
 
     int g_cost; //cost from initial state to node: g()
-    int h_cost; //cost of heuristic function: h()
+    double h_cost; //cost of heuristic function: h()
     int depth;
     string state; //unique ID for state
 
@@ -35,11 +35,11 @@ public:
     static string puzzle_string(int puzzle_node[n][n]); //converts puzzle to string
     void print_result();
     bool detect_space(int& row, int& col); //finds the space in puzzle
-    int total_cost() const; //g(n) + h(n)
+    double total_cost(); //g(n) + h(n)
     bool goal_test();
     void set_heuristic(int choice);
     int misplaced_tile(); //counts misplaced tiles
-    int euclidean_distance(); //calcs euclidean distance
+    double euclidean_distance(); //calcs euclidean distance
 };
 
 

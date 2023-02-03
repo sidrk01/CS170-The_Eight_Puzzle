@@ -20,8 +20,8 @@ const string node_goal_depth = "The depth of the goal node was: ";
 using namespace std;
 
 struct comp{ //comparison operator for priority queue
-    bool operator()(const Node& lhs, const Node& rhs) const {
-        return ((lhs.total_cost()) > (rhs.total_cost())); //determines node ordering by cost
+    bool operator()(Node lhs, Node rhs) const {
+        return (lhs.total_cost() > rhs.total_cost()); //determines node ordering by cost
     }
 };
 
