@@ -45,16 +45,12 @@ void SearchAlgos::graph_search() {
         return;
         }
 
-        /*
         if (frontier_size > 1) {//expand the chosen node
             cout << "The best state to expand with g(n) = " << temp.g_cost  << " and h(n) = " << temp.h_cost << " is..." << endl;
         }
 
         temp.print_result();
         cout <<"expanding this node..." << endl << endl;
-        */
-
-        list = expand(temp); //expand the chosen node
 
         // DEBUG: OUTPUTS
         /*
@@ -66,6 +62,7 @@ void SearchAlgos::graph_search() {
         cout << "End List:" << endl;
        */
 
+        list = expand(temp); //expand the chosen node
         for (auto & i : list){ //adding resulting nodes to the frontier
             frontier.push(i);
         }
@@ -143,14 +140,6 @@ vector<Node> SearchAlgos::expand(Node& curr) {
         }
     }
 
-    /*DEBUG******************
-    cout << "Start of List:" << endl;
-    for (unsigned i =0; i < list.size(); i++){
-       list.at(i).print_result();
-       cout << endl;
-    }
-    cout << "End of List" << endl;
-*/
     return list; //returns list of explored temp Nodes
 }
 

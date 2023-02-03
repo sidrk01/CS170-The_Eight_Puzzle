@@ -22,7 +22,6 @@ Node::Node(Node *prev){ //initialize with previous Node
 
 Node::Node(Problem p){ //creates initial and goal state
     state = puzzle_string(p.initial_state);
-    cout << endl << state << endl;
     g_cost = 0;
     h_cost = 0;
     depth = 0;

@@ -21,7 +21,7 @@ using namespace std;
 
 struct comp{ //comparison operator for priority queue
     bool operator()(const Node& lhs, const Node& rhs) const {
-        return ((lhs.total_cost()) < (rhs.total_cost())); //determines node ordering by cost
+        return ((lhs.total_cost()) > (rhs.total_cost())); //determines node ordering by cost
     }
 };
 
