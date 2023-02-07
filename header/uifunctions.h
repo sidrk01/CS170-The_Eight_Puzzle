@@ -19,43 +19,48 @@ const string proceed = "Would you like to try another puzzle?\nEnter 'Y' to cont
 const string default_choice = "Select the desired level of spice for your puzzle\n[1] No Spice\n[2] Lite Mild\n[3] Mild\n[4] Medium\n[5] HOT\n[6] Extra HOT\n[7] REAPER\n[8] EMERGENCY ROOM\n";
 const string border = "========================================================================================================================";
 
-//one move [1]
+//0 moves [1]
 const int no_spice[N][N] = {{1, 2, 3},
                             {4, 5, 6},
                             {7, 8, 0,}};
 
-//three moves [2]
-const int lite_mild[N][N] = {{1, 2, 0},
-                             {4, 5, 3},
-                             {7, 8, 6,}};
+//1 move [2]
+const int lite_mild[N][N] = {{1, 2, 3},
+                             {4, 5, 6},
+                             {7, 0, 8,}};
 
-//6 moves [3]
+//2 moves [3]
 const int mild[N][N] = {{1, 2, 0},
                         {4, 5, 3},
                         {7, 8, 6,}};
 
-//16 moves [4]
-const int medium[N][N] = {{0, 1, 2},
-                          {4, 5, 3},
-                          {7, 8, 6,}};
+//3 moves [4]
+const int medium[N][N] = {{1, 2, 3},
+                          {0, 5, 6},
+                          {4, 7, 8,}};
 
-//15 moves [5]
-const int hot[N][N] = {{7, 2, 5},
-                       {3, 1, 0},
-                       {6, 4, 8,}};
+//16 moves [5]
+const int hot[N][N] = {{1, 5, 3},
+                       {2, 4, 6},
+                       {7, 8, 0,}};
 
-//31 moves [6]
-const int extra_hot[N][N] = {{8, 6, 7},
-                             {2, 5, 4},
-                             {3, 0, 1,}};
+//22 moves [6]
+const int extra_hot[N][N] = {{8, 7, 1},
+                             {6, 0, 2},
+                             {5, 4, 3,}};
 
-//868 moves [7]
-const int reaper[N][N] = {{8, 7, 1},
-                          {6, 0, 2},
-                          {5, 4, 3,}};
+//23 moves [7]
+const int reaper[N][N] = {{7, 2, 5},
+                          {3, 1, 0},
+                          {6, 4, 8,}};
 
-//don't attempt to solve [8]
-const int emergency_room[N][N] = {{1, 2, 3},
+//31 moves [8]
+const int emergency_room[N][N] = {{8, 6, 7},
+                                  {2, 5, 4},
+                                  {3, 0, 1,}};
+
+//impossible to solve [9]
+const int hidden_puzzle[N][N] = {{1, 2, 3},
                                   {4, 5, 6},
                                   {8, 7, 0,}};
 
@@ -103,6 +108,11 @@ switch (user_select) {
         copy(&emergency_room[0][0], &emergency_room[0][0] + N * N, &user_puzzle[0][0]);
         spice_select = "EMERGENCY ROOM";
         break;
+    case 9:
+        copy(&hidden_puzzle[0][0], &hidden_puzzle[0][0] + N * N, &user_puzzle[0][0]);
+        spice_select = "FOUND THE HIDDEN PUZZLE!!!";
+        break;
+
     default:
         cout << invalid;
         copy(&lite_mild[0][0], &lite_mild[0][0] + N * N, &user_puzzle[0][0]);

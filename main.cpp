@@ -2,9 +2,9 @@
 #include <string>
 #include <algorithm>
 #include <cstdlib>
-#include "Problem.h"
-#include "uifunctions.h"
-#include "searchalgos.h"
+#include "header/Problem.h"
+#include "header/uifunctions.h"
+#include "header/searchalgos.h"
 using namespace std;
 
 

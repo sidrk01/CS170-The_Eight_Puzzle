@@ -1,7 +1,7 @@
 //
 // Created by sidha on 2/1/2023.
 //
-#include "searchalgos.h"
+#include "../header/searchalgos.h"
 
 SearchAlgos::SearchAlgos(Problem problem, int num) {
     p = &problem;
@@ -41,12 +41,14 @@ void SearchAlgos::graph_search() {
 
         explored_set.insert(head.state); //add to first node to explored set
 
+        /*
         if (frontier_size > 1) {//expand the chosen node
             cout << "The best state to expand with g(n) = " << temp.g_cost  << " and h(n) = " << temp.h_cost << " is..." << endl;
         }
 
         temp.print_result();
         cout <<"expanding this node..." << endl << endl;
+        */
 
         list = expand(temp); //expand the chosen node
         for (auto & i : list){ //adding resulting nodes to the frontier

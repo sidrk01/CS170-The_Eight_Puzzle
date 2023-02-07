@@ -3,4 +3,4 @@ project(CS170_The_Eight_Puzzle)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(CS170_The_Eight_Puzzle main.cpp Node.cpp searchalgos.h searchalgos.cpp)
+add_executable(CS170_The_Eight_Puzzle main.cpp src/Node.cpp header/searchalgos.h src/searchalgos.cpp)
