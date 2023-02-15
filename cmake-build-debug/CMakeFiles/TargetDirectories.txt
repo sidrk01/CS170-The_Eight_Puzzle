@@ -1,0 +1,3 @@
+C:/Users/sidha/CLionProjects/CS170-The_Eight_Puzzle/cmake-build-debug/CMakeFiles/CS170_The_Eight_Puzzle.dir
+C:/Users/sidha/CLionProjects/CS170-The_Eight_Puzzle/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/sidha/CLionProjects/CS170-The_Eight_Puzzle/cmake-build-debug/CMakeFiles/rebuild_cache.dir
